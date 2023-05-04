@@ -15,8 +15,17 @@ namespace LottoNumberSpawner
 
             if (Lotto.Checked == true)
             {
-                for (int loop = 0; loop < 6; loop++) {
-                    numArray[loop] = rand.Next(1, 45);
+                int number;
+                for (int loop = 0; loop < 6;) {
+                    number = rand.Next(1, 45);
+                    if (Array.Exists(numArray, x => x == number))
+                    {
+                        number = rand.Next(1, 45);
+                    }
+                    else {
+                        numArray[loop] = number;
+                        loop++;
+                    }
                 }
                 NumArray.Text = String.Join(", ", numArray);
             }
